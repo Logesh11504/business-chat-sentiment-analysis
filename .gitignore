@@ -1,0 +1,17 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# IDE Settings
+.idea/
+.vscode/
+
+# Data files (Optional but recommended)
+# If your WhatsApp chat file contains private info, ignore it:
+*.txt
