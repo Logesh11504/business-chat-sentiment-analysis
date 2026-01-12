@@ -214,7 +214,7 @@ if dataset is not None:
                     
                     col1, col2 = st.columns(2)
                     with col1:
-                        st.markdown("###**BEST 3 DAYS**")
+                        st.markdown("**BEST 3 DAYS**")
                         if top_days:
                             for i, day_data in enumerate(top_days, 1):
                                 score = day_data['engagement_score']
@@ -223,7 +223,7 @@ if dataset is not None:
                             st.info("No data")
                     
                     with col2:
-                        st.markdown("###**WORST 3 DAYS**")
+                        st.markdown("**WORST 3 DAYS**")
                         if bottom_days:
                             for i, day_data in enumerate(bottom_days, 1):
                                 score = day_data['engagement_score']
@@ -268,11 +268,11 @@ if dataset is not None:
                         col1, col2, col3 = st.columns([2,1,1])
                         with col1:
                             if final_score > 28:
-                                st.markdown("###**PERFECT TIMING**")
+                                st.markdown("**PERFECT TIMING**")
                                 st.success(f"**{final_score:.0f}/100**")
                                 st.balloons()
                             else:
-                                st.markdown("###**LOW ENGAGEMENT**")
+                                st.markdown("**LOW ENGAGEMENT**")
                                 st.warning(f"**{final_score:.0f}/100**")
                         
                         with col2:
@@ -280,7 +280,7 @@ if dataset is not None:
                         with col3:
                             st.metric("History", f"{month_modifier*day_modifier:.0%}")
                         
-                        st.markdown("### **Score Breakdown:**")
+                        st.markdown("**Score Breakdown:**")
                         st.metric("Activity", f"{activity_score:.0f}", f"{activity_score:.0f}")
                         st.metric("Month History", f"{month_modifier:.0%}", f"{month_modifier:.0%}")
                         st.metric("Day History", f"{day_modifier:.0%}", f"{day_modifier:.0%}")
@@ -421,11 +421,11 @@ if dataset is not None:
 
                             with col1:
                                 if final_score > 0.6:
-                                    st.markdown("### **APPROACH NOW!**")
+                                    st.markdown("**APPROACH NOW!**")
                                     st.success(f"**Confidence: {final_score:.1%}**")
                                     st.balloons()
                                 else:
-                                    st.markdown("### **WAIT**")
+                                    st.markdown("**WAIT**")
                                     st.error(f"**Confidence: {final_score:.1%}**")
 
                             with col2:
