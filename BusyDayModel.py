@@ -1,9 +1,7 @@
-# BusyDayModel.py
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.ensemble import RandomForestClassifier
-
 from ModelData import make_daily_dataset
 
 def train_busy_day_model(df: pd.DataFrame):

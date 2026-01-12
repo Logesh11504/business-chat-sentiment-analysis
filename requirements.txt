@@ -1,0 +1,12 @@
+streamlit
+pandas
+matplotlib
+plotly
+seaborn
+emoji
+urlextract
+wordcloud
+vaderSentiment
+scikit-learn
+imbalanced-learn
+numpy
