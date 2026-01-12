@@ -11,8 +11,3 @@ env/
 # IDE Settings
 .idea/
 .vscode/
-
-# Data files (Optional but recommended)
-# If your WhatsApp chat file contains private info, ignore it:
-*.txt
-!requirements.txt
