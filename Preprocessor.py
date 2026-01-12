@@ -28,10 +28,8 @@ def preprocessing(data):
         if len(parts) == 2:
             users.append(parts[0].strip())
 
-            # Get the message and strip it
             content = parts[1].strip()
 
-            # If content is empty string, label it; otherwise keep it
             msg.append(content if content else f"{parts[0].strip()} Initiated a Call")
 
         else:
@@ -40,9 +38,7 @@ def preprocessing(data):
 
     dataset['users'] = users
     dataset['messages'] = msg
-    # number of characters
     dataset['msg_len_chars'] = dataset['messages'].apply(len)
-    # number of words
     dataset['msg_len_words'] = dataset['messages'].apply(lambda x: len(x.split()))
 
     def count_emojis(text):
@@ -87,13 +83,11 @@ def preprocessing(data):
 
     dataset['period'] = period
 
-    # Add weekday_num for Engagement Predictor
     dataset['weekday_num'] = dataset['day_name'].map({
         'Monday': 0, 'Tuesday': 1, 'Wednesday': 2, 'Thursday': 3,
         'Friday': 4, 'Saturday': 5, 'Sunday': 6
     }).fillna(0).astype(int)
 
-    # Add month_num for month filtering
     dataset['month_num'] = dataset['month'].map({
         'January': 1, 'February': 2, 'March': 3, 'April': 4, 'May': 5, 'June': 6,
         'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12

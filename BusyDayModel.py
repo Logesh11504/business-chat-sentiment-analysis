@@ -52,7 +52,6 @@ def get_busy_best_worst(daily_df):
     monthly_stats.columns = ['month_num', 'weekday_num', 'avg_msgs', 'day_count']
     monthly_stats['msg_bonus'] = monthly_stats['avg_msgs'] - daily_df['total_messages'].median()
     
-    # Top 4 busiest
     top_busy = monthly_stats.nlargest(4, 'avg_msgs')
     weekday_names = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
     
@@ -63,7 +62,6 @@ def get_busy_best_worst(daily_df):
             'avg_msgs': row['avg_msgs']
         })
     
-    # Quietest days
     bottom_quiet = monthly_stats.nsmallest(4, 'avg_msgs')
     for _, row in bottom_quiet.iterrows():
         worst_days.append({

@@ -4,7 +4,6 @@ import pandas as pd
 _analyzer = SentimentIntensityAnalyzer()
 
 def add_sentiment(df: pd.DataFrame) -> pd.DataFrame:
-    # works in-place but also returns df for convenience
     scores = df['messages'].apply(lambda x: _analyzer.polarity_scores(str(x))['compound'])
     df['sentiment_score'] = scores
 
