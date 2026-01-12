@@ -155,7 +155,7 @@ if dataset is not None:
                 
                 WEEKDAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
                 
-                if st.button("🔍 Analyze Patterns"):
+                if st.button("Analyze Patterns"):
                     with st.spinner("Calculating engagement..."):
                         model_df = user_data if selected_user != 'Overall' else dataset
                         
@@ -210,29 +210,29 @@ if dataset is not None:
                         else:
                             top_days = []
                             bottom_days = []
-                            st.info(f"📭 **{selected_view}:** No data")
+                            st.info(f"**{selected_view}:** No data")
                     
                     col1, col2 = st.columns(2)
                     with col1:
-                        st.markdown("### 🏆 **BEST 3 DAYS**")
+                        st.markdown("###**BEST 3 DAYS**")
                         if top_days:
                             for i, day_data in enumerate(top_days, 1):
                                 score = day_data['engagement_score']
-                                st.markdown(f"**{i}.** {day_data['day_name']} **{score:.1f}** ⭐⭐⭐")
+                                st.markdown(f"**{i}.** {day_data['day_name']} **{score:.1f}**")
                         else:
                             st.info("No data")
                     
                     with col2:
-                        st.markdown("### 😴 **WORST 3 DAYS**")
+                        st.markdown("###**WORST 3 DAYS**")
                         if bottom_days:
                             for i, day_data in enumerate(bottom_days, 1):
                                 score = day_data['engagement_score']
-                                st.markdown(f"**{i}.** {day_data['day_name']} **{score:.1f}** ⭐")
+                                st.markdown(f"**{i}.** {day_data['day_name']} **{score:.1f}**")
                         else:
                             st.info("No data")
                     
                     with st.form("enhanced_scenario"):
-                        st.subheader("🔮 Smart Scenario Tester")
+                        st.subheader("Smart Scenario Tester")
                         s_col1, s_col2 = st.columns(2)
                         with s_col1:
                             test_month_name = st.selectbox("Month:", month_names[1:])
@@ -243,7 +243,7 @@ if dataset is not None:
                             test_words = st.slider("Words/Msg:", 1, 30, 8)
                             test_emojis = st.slider("Emojis/Msg:", 0.0, 3.0, 0.5)
                         
-                        test_submit = st.form_submit_button("🎯 Predict", use_container_width=True)
+                        test_submit = st.form_submit_button("Predict", use_container_width=True)
 
                     if test_submit:
                         test_month_num = month_names.index(test_month_name)
@@ -268,11 +268,11 @@ if dataset is not None:
                         col1, col2, col3 = st.columns([2,1,1])
                         with col1:
                             if final_score > 28:
-                                st.markdown("### 🚀 **PERFECT TIMING**")
+                                st.markdown("###**PERFECT TIMING**")
                                 st.success(f"**{final_score:.0f}/100**")
                                 st.balloons()
                             else:
-                                st.markdown("### 📉 **LOW ENGAGEMENT**")
+                                st.markdown("###**LOW ENGAGEMENT**")
                                 st.warning(f"**{final_score:.0f}/100**")
                         
                         with col2:
@@ -281,10 +281,10 @@ if dataset is not None:
                             st.metric("History", f"{month_modifier*day_modifier:.0%}")
                         
                         st.markdown("### **Score Breakdown:**")
-                        st.metric("📨 Activity", f"{activity_score:.0f}", f"{activity_score:.0f}")
-                        st.metric("📅 Month History", f"{month_modifier:.0%}", f"{month_modifier:.0%}")
-                        st.metric("📊 Day History", f"{day_modifier:.0%}", f"{day_modifier:.0%}")
-                        st.metric("🎯 FINAL", f"{final_score:.0f}", "✅" if final_score > 28 else "❌")
+                        st.metric("Activity", f"{activity_score:.0f}", f"{activity_score:.0f}")
+                        st.metric("Month History", f"{month_modifier:.0%}", f"{month_modifier:.0%}")
+                        st.metric("Day History", f"{day_modifier:.0%}", f"{day_modifier:.0%}")
+                        st.metric("FINAL", f"{final_score:.0f}", "✅" if final_score > 28 else "❌")
 
                         
             else:
@@ -313,7 +313,7 @@ if dataset is not None:
             days_available = user_data['only_date'].nunique()
             
             if days_available >= 15:
-                if st.button("🚀 Train Model"):
+                if st.button("Train Model"):
                     with st.spinner("Analyzing sentiment patterns..."):
                         result = cached_train_sentiment(selected_user, dataset)
                         if result[0] is not None:
@@ -334,14 +334,14 @@ if dataset is not None:
                         st.caption("• Message length (25%)")
                         st.caption("• Emojis & timing (40%)")
 
-                    if st.button("📊 Show What Drives Sentiment"):
+                    if st.button("Show What Drives Sentiment"):
                         importances = st.session_state.s_model.feature_importances_
                         features = ['Messages', 'Words/Msg', 'Emojis', 'Avg Hour', 'Peak Hour', 'Weekday', 'Month']
 
                         fig, ax = plt.subplots(figsize=(10, 6))
                         colors = plt.cm.viridis(importances)
                         ax.barh(features, importances, color=colors)
-                        ax.set_title(f"📈 {selected_user}'s Sentiment Drivers")
+                        ax.set_title(f"{selected_user}'s Sentiment Drivers")
                         ax.set_xlabel("Importance")
                         for i, v in enumerate(importances):
                             ax.text(v + 0.01, i, f'{v:.0%}', va='center')
@@ -355,39 +355,39 @@ if dataset is not None:
 
                     row1_col1, row1_col2 = st.columns(2)
                     with row1_col1:
-                        st.subheader("🏆 TOP 3 BEST TIMES")
+                        st.subheader("TOP 3 BEST TIMES")
                         if best_times:
                             for i, slot in enumerate(best_times[:3], 1):
                                 st.markdown(f"**{i}.** {slot['weekday']} **{slot['hour']}**")
                                 st.caption(f"({slot['score']} positive days)")
                         else:
-                            st.info("🔍 Need more positive days...")
+                            st.info("Need more positive days...")
 
                     with row1_col2:
-                        st.subheader("❌ TOP 3 WORST TIMES")
+                        st.subheader("TOP 3 WORST TIMES")
                         if worst_times:
                             for i, slot in enumerate(worst_times[:3], 1):
                                 st.error(f"**{i}.** {slot['weekday']} **{slot['hour']}**")
                                 st.caption(f"({slot['score']} negative days)")
                         else:
-                            st.info("🔍 Need more negative days...")
+                            st.info("Need more negative days...")
 
                     st.markdown("---")
                     with st.form("approach_engine"):
-                        st.subheader("🔮 Scenario Predictor")
+                        st.subheader("Scenario Predictor")
 
                         input_col1, input_col2 = st.columns(2)
                         with input_col1:
-                            day = st.selectbox("📅 Day:", list(weekday_map.keys()))
-                            month_input = st.selectbox("📆 Month:", list(month_map.keys()))
-                            msg_count = st.slider("📨 Messages:", 1, 100, 20)
+                            day = st.selectbox("Day:", list(weekday_map.keys()))
+                            month_input = st.selectbox("Month:", list(month_map.keys()))
+                            msg_count = st.slider("Messages:", 1, 100, 20)
 
                         with input_col2:
-                            peak_hr = st.slider("⏰ Peak Hour:", 0, 23, 19)
-                            avg_words = st.slider("✍️ Words/Message:", 1, 30, 8)
-                            avg_emojis = st.slider("😊 Emojis/Message:", 0.0, 5.0, 0.5)
+                            peak_hr = st.slider("Peak Hour:", 0, 23, 19)
+                            avg_words = st.slider("Words/Message:", 1, 30, 8)
+                            avg_emojis = st.slider("Emojis/Message:", 0.0, 5.0, 0.5)
 
-                        if st.form_submit_button("🎯 Predict Best Time?", use_container_width=True):
+                        if st.form_submit_button("Predict Best Time?", use_container_width=True):
 
                             features = [[
                                 float(msg_count),  
@@ -421,11 +421,11 @@ if dataset is not None:
 
                             with col1:
                                 if final_score > 0.6:
-                                    st.markdown("### 🎉 **APPROACH NOW!**")
+                                    st.markdown("### **APPROACH NOW!**")
                                     st.success(f"**Confidence: {final_score:.1%}**")
                                     st.balloons()
                                 else:
-                                    st.markdown("### ⏳ **WAIT**")
+                                    st.markdown("### **WAIT**")
                                     st.error(f"**Confidence: {final_score:.1%}**")
 
                             with col2:
@@ -439,24 +439,24 @@ if dataset is not None:
                             explanation = []
 
                             if msg_count > 25:
-                                explanation.append("✅ **High volume** = engaged mood")
+                                explanation.append("**High volume** = engaged mood")
                             if avg_words > 12:
-                                explanation.append("✅ **Long messages** = talkative")
+                                explanation.append("**Long messages** = talkative")
                             if avg_emojis > 1.0:
-                                explanation.append("✅ **Many emojis** = positive")
+                                explanation.append("**Many emojis** = positive")
 
                             if is_best_match:
-                                explanation.append("🎯 **Perfect historical timing!**")
+                                explanation.append("**Perfect historical timing!**")
                             elif is_worst_match:
-                                explanation.append("⚠️ Risky timing (overridden by activity)")
+                                explanation.append("Risky timing (overridden by activity)")
 
                             for point in explanation[:3]:
                                 st.success(point)
 
                             if not explanation:
-                                st.info("🧠 Model using learned patterns")
+                                st.info("Model using learned patterns")
 
-                    with st.expander("ℹ️ How it works"):
+                    with st.expander("How it works"):
                         st.markdown("""
                         **Model learns from your chat patterns:**
                         1. **High message volume** → User is engaged/happy
